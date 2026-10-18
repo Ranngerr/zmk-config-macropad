@@ -2,6 +2,19 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    // Samostatná obsluha S10 zcela mimo klávesovou matici
+    sideband_behaviors: sideband_behaviors {
+        compatible = "zmk,kscan-sideband-behaviors";
+        kscan = <&kscan_direct>;
+        auto-enable;
+
+        s10_key {
+            column = <0>;
+            row = <0>;
+            bindings = <&kp KP_N0>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -10,7 +23,6 @@
                 &kp KP_N1    &kp KP_N2    &kp KP_N3
                 &kp KP_N4    &kp KP_N5    &kp KP_N6
                 &kp KP_N7    &kp KP_N8    &kp KP_N9
-                &kp KP_N0
             >;
         };
     };
