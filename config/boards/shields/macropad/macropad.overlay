@@ -1,43 +1,29 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/zmk/keys.h>
 
 / {
     chosen {
-        zmk,kscan = &kscan;
+        zmk,kscan = &kscan_matrix;
         zmk,matrix-transform = &default_transform;
     };
 
+    // Čistá matice 3x3 (pouze 9 kláves numpadu)
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <3>;
-        rows = <4>;
+        rows = <3>;
         map = <
             RC(0,0) RC(0,1) RC(0,2)
             RC(1,0) RC(1,1) RC(1,2)
             RC(2,0) RC(2,1) RC(2,2)
-            RC(3,0)
         >;
-    };
-
-    kscan: kscan {
-        compatible = "zmk,kscan-composite";
-        rows = <4>;
-        columns = <3>;
-
-        // Matice 3x3
-        matrix {
-            kscan = <&kscan_matrix>;
-        };
-
-        // Samostatné tlačítko S10 (bude na pozici řádek 3, sloupec 0)
-        direct {
-            kscan = <&kscan_direct>;
-            row-offset = <3>;
-        };
     };
 
     kscan_matrix: kscan_matrix {
         compatible = "zmk,kscan-gpio-matrix";
         diode-direction = "col2row";
+        debounce-press-ms = <5>;
+        debounce-release-ms = <5>;
 
         col-gpios
             = <&pro_micro 7 GPIO_ACTIVE_HIGH>
@@ -50,9 +36,25 @@
             , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
     };
 
-    kscan_direct: kscan_direct {
+    // Samostatné přímé tlačítko S10 mimo matici
+    direct_scan: direct_scan {
         compatible = "zmk,kscan-gpio-direct";
+        debounce-press-ms = <15>;
+        debounce-release-ms = <15>;
         input-gpios
             = <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    };
+
+    // Obsluha tlačítka S10 mimo matici i mimo keymap
+    sideband_behaviors: sideband_behaviors {
+        compatible = "zmk,kscan-sideband-behaviors";
+        kscan = <&direct_scan>;
+        auto-enable;
+
+        s10_direct_key {
+            column = <0>;
+            row = <0>;
+            bindings = <&kp KP_N0>;
+        };
     };
 };
