@@ -40,7 +40,6 @@
         compatible = "zmk,kscan-gpio-direct";
         debounce-press-ms = <5>;
         debounce-release-ms = <5>;
-        input-gpios
-            = <&pro_micro 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        input-gpios = <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
 };
