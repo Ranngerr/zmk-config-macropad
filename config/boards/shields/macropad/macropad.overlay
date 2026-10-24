@@ -38,8 +38,8 @@
     // Samostatný přímý pin 10 pro S10 s vlastním filtrem zákmitů
     kscan_direct: kscan_direct {
         compatible = "zmk,kscan-gpio-direct";
-        debounce-press-ms = <20>;
-        debounce-release-ms = <20>;
+        debounce-press-ms = <5>;
+        debounce-release-ms = <5>;
         input-gpios
             = <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
     };
