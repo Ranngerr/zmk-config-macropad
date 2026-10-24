@@ -2,20 +2,37 @@
 
 / {
     chosen {
-        zmk,kscan = &kscan_matrix;
+        zmk,kscan = &kscan;
         zmk,matrix-transform = &default_transform;
     };
 
-    // Čistá hardwarová matice 3x3 (pouze 9 kláves)
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <3>;
-        rows = <3>;
+        rows = <4>;
         map = <
             RC(0,0) RC(0,1) RC(0,2)
             RC(1,0) RC(1,1) RC(1,2)
             RC(2,0) RC(2,1) RC(2,2)
+            RC(3,0)
         >;
+    };
+
+    kscan: kscan {
+        compatible = "zmk,kscan-composite";
+        rows = <4>;
+        columns = <3>;
+
+        // 1. Matice 3x3 na pinech 4-9
+        matrix {
+            kscan = <&kscan_matrix>;
+        };
+
+        // 2. Samostatný pin 10 posunutý na řádek 3
+        direct {
+            kscan = <&kscan_direct>;
+            row-offset = <3>;
+        };
     };
 
     kscan_matrix: kscan_matrix {
@@ -35,11 +52,11 @@
             , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
     };
 
-    // Samostatný přímý pin 10 pro S10 s vlastním filtrem zákmitů
     kscan_direct: kscan_direct {
         compatible = "zmk,kscan-gpio-direct";
-        debounce-press-ms = <1>;
+        debounce-press-ms = <5>;
         debounce-release-ms = <5>;
-        input-gpios = <&pro_micro 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        input-gpios
+            = <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
     };
 };
