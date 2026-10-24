@@ -9,7 +9,9 @@
         auto-enable;
 
         s10_key {
-            bindings = <&kp KP_N0>;
+            column = <0>;
+            row = <0>;
+            bindings = <&kp N0>;
         };
     };
 
