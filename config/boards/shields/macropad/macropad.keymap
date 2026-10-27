@@ -6,6 +6,7 @@
         compatible = "zmk,keymap";
 
         default_layer {
+            display-name = "numpad";
             bindings = <
                 &kp KP_N1    &kp KP_N2    &kp KP_N3
                 &kp KP_N4    &kp KP_N5    &kp KP_N6
