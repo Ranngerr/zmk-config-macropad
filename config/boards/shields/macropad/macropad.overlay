@@ -65,8 +65,8 @@
 &pro_micro_i2c {
     status = "okay";
 
-    oled: ssd1306@3d {
-        reg = <0x3d>;
+    oled: ssd1306@3c {
+        reg = <0x3c>;
         compatible = "solomon,ssd1306fb";
         reg = <0x3c>;
         width = <128>;
