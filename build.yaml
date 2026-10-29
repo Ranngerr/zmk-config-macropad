@@ -22,7 +22,7 @@ include:
   - board: nice_nano_v2
     shield: macropad
     snippet: zmk-usb-logging
-features:
-  - display
-exposes:
-  - i2c_oled
+#features:
+ # - display
+#exposes:
+ # - i2c_oled
