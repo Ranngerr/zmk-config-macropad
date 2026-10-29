@@ -23,7 +23,6 @@ include:
     shield: macropad
     snippet: zmk-usb-logging
 features:
-  - keys
   - display
 exposes:
   - i2c_oled
