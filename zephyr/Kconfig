@@ -1,4 +1,0 @@
-config MACROPAD_USB_DIAGNOSTICS
-    bool "Periodic USB console and logger diagnostic messages"
-    depends on CONSOLE && UART_CONSOLE && PRINTK && LOG
-    default n
