@@ -1,5 +1,5 @@
 build:
   cmake: zephyr
-  kconfig: Kconfig
+  kconfig: zephyr/Kconfig
   settings:
     board_root: .
