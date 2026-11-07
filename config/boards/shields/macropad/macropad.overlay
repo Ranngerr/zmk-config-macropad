@@ -36,12 +36,12 @@
             row-offset = <3>;
         };
 
-        // 3. Tlačítko enkoderu
+        /* 3. Tlačítko enkoderu
         encoder_btn {
             kscan = <&kscan_direct_enc>;
             row-offset = <3>;
             column-offset = <1>;
-        };
+        };*/
     };
 
     kscan_matrix: kscan_matrix {
@@ -66,15 +66,16 @@
         compatible = "zmk,kscan-gpio-direct";
         debounce-press-ms = <5>;
         debounce-release-ms = <5>;
-        input-gpios = 
-            <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        input-gpios =
+            <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>, // 1. pin -> RC(3,0) (vaše staré tlačítko)
+            <&pro_micro 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; // 2. pin -> RC(3,1) (tlačítko enkodéru)
     };
 
-    // SW Enkoder
+    /* SW Enkoder
     kscan_direct_enc: kscan_direct_enc {
         compatible = "zmk,kscan-gpio-direct";
         input-gpios = <&pro_micro 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-    };
+    };*/
 };
 
 &pro_micro_i2c {
