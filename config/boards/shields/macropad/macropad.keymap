@@ -11,7 +11,7 @@
                 &kp KP_N1    &kp KP_N2    &kp KP_N3
                 &kp KP_N4    &kp KP_N5    &kp KP_N6
                 &kp KP_N7    &kp KP_N8    &kp KP_N9
-                &kp KP_N0    &kp A
+                &kp KP_N0    &kp KP_N5
             >;
 
             // Mapování otáčení enkodéru: <&inc_dec_kp AKCE_DOLEVA AKCE_DOPRAVA>
